@@ -11,20 +11,22 @@ def split_paths(user_input: str):
 
 
 def split_zip(paths_list):
-    i_path = paths_list[0]
-    f_name = path.basename(i_path)
-    p_dir = path.dirname(i_path)
+    name_ext = path.basename(paths_list[0])
+    name, _ = path.splitext(name_ext)
+    par_dir = path.dirname(paths_list[0])
 
-    s.call(f'zip -s 20g -j {p_dir}/{f_name} --out {p_dir}/chunk', shell=True)
+    s.call(f'zip -s 20g -j {par_dir}/{name_ext} --out {par_dir}/{name}_chunk',
+           shell=True)
 
 
 def join_zip(paths_list):
-    f_name = path.basename(paths_list[0])
-    p_dir = path.dirname(paths_list[0])
+    name_ext = path.basename(paths_list[0])
+    name, _ = path.splitext(name_ext)
+    par_dir = path.dirname(paths_list[0])
     paths_str = ' '.join(paths_list)
 
-    s.call(f'cat {paths_str} > {p_dir}/joined.zip &&\
-           unzip {p_dir}/joined.zip -d {p_dir}/',
+    s.call(f'cat {paths_str} > {par_dir}/{name}_joined.zip &&\
+           unzip {par_dir}/{name}_joined.zip -d {par_dir}',
            shell=True)
 
 
