@@ -15,7 +15,7 @@ def split_zip(paths_list):
     name, _ = path.splitext(name_ext)
     par_dir = path.dirname(paths_list[0])
 
-    s.call(f'zip -s 20g -j {par_dir}/{name_ext} --out {par_dir}/{name}_chunk',
+    s.call(f'zip -dg -s 20g -j {par_dir}/{name_ext} -O {par_dir}/{name}_chunk',
            shell=True)
 
 
@@ -26,7 +26,7 @@ def join_zip(paths_list):
     paths_str = ' '.join(paths_list)
 
     s.call(f'cat {paths_str} > {par_dir}/{name}_joined.zip &&\
-           unzip {par_dir}/{name}_joined.zip -d {par_dir}',
+           unzip -q {par_dir}/{name}_joined.zip -d {par_dir}',
            shell=True)
 
 
