@@ -15,8 +15,9 @@ def split_zip(paths_list):
     name, _ = path.splitext(name_ext)
     par_dir = path.dirname(paths_list[0])
 
-    s.call(f'zip -dg -s 20g -j {par_dir}/{name_ext} -O {par_dir}/{name}_chunk',
-           shell=True)
+    # todo calc amount of stout dots to ETA
+    s.call(f'zip -dg -s 20g -j {par_dir}/{name_ext} -O {par_dir}/{name}_chunk |\
+           pv > /dev/null', shell=True)
 
 
 def join_zip(paths_list):
@@ -25,9 +26,9 @@ def join_zip(paths_list):
     par_dir = path.dirname(paths_list[0])
     paths_str = ' '.join(paths_list)
 
-    s.call(f'cat {paths_str} > {par_dir}/{name}_joined.zip &&\
-           unzip -q {par_dir}/{name}_joined.zip -d {par_dir}',
-           shell=True)
+    s.call(f'cat {paths_str} | pv > {par_dir}/{name}_joined.zip', shell=True)
+    # todo unzip file with pv status bar
+    # && unzip {par_dir}/{name}_joined.zip -d {par_dir} | pv > /dev/null
 
 
 # waiting for paste to get file(-s) path(-es)
