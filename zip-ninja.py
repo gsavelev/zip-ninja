@@ -24,6 +24,9 @@ def split_zip(paths_list, output_path):
     s.call(f'zip -dg -s 20g -j {par_dir}/{name_ext} -O {out_dir}/{name}_chunk |\
            pv > /dev/null', shell=True)
 
+    # play end sound
+    s.call(f'afplay {end_sound}', shell=True)
+
 
 def join_zip(paths_list, output_path):
     name_ext = path.basename(paths_list[0])
@@ -40,10 +43,14 @@ def join_zip(paths_list, output_path):
     # todo unzip file with pv status bar
     # && unzip {par_dir}/{name}_joined.zip -d {par_dir} | pv > /dev/null
 
+    # play end sound
+    s.call(f'afplay {end_sound}', shell=True)
+
 
 custom_output_path = None
 description = 'Script splits fat archive into several parts' \
               'also combines several parts back to fat one.'
+end_sound = 'End.aiff'
 
 # init argument parser
 parser = argparse.ArgumentParser(description=description)
