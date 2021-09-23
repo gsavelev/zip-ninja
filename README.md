@@ -7,9 +7,14 @@
 ## Requirements
 * pv
 
-## Usage
-1. Install requirements 
+## Pulling up dependencies
 ```brew install pv```
-2. Run ```python zip-ninja.py```
+
+## Parameters
+> -d or --destination - to set custom output path
+
+## Usage example
+1. Run ```python zip-ninja.py```
+2. Set parameters if needed
 3. Drop zip file(-s) in terminal window
 4. Press _Enter_

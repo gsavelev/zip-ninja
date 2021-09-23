@@ -47,14 +47,14 @@ description = 'Script splits fat archive into several parts' \
 
 # init argument parser
 parser = argparse.ArgumentParser(description=description)
-parser.add_argument('-o', '--output', help='set custom output path')
+parser.add_argument('-d', '--destination', help='set custom output path')
 
 # read arguments
 args = parser.parse_args()
 
-# check for --output or -o
-if args.output:
-    custom_output_path = args.output
+# check for -d or -destination
+if args.destination:
+    custom_output_path = args.destination
 
 # waiting for paste to get file(-s) path(-es)
 _input = input('⇩ Drop file(-s) here ⇩\n')
