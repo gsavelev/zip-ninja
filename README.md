@@ -1,6 +1,6 @@
 # Zip Ninja
 > Script splits fat archive into several parts 
-> also combines several parts back to fat
+> also combines several parts back to fat one.
 
 ![](img.jpeg)
 
